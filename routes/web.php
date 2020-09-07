@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,13 @@ Route::get('tests/test', 'TestController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//追加 //REST
+// Route::resource('contacts', 'ContactFormController');
+
+//ｃontact/idnexにたどり着いたら、ログイン機能を動かす
+Route::get('contact/index', 'ContactFormController@index');
+
+Route::group(['prefix' =>'contact', 'middleware'=>'auth'], function(){
+     Route::get('index', 'ContactFormController@index')->name('contact');
+});

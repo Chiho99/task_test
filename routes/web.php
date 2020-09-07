@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('tests/test', 'TestController@index');
+
+// 認証機能
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

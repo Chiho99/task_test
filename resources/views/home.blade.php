@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <a href="{{route('contacts.index')}}">here</a>
                 </div>
             </div>
         </div>

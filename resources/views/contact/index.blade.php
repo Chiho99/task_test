@@ -5,6 +5,22 @@
  <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                  <div class="register">
+                        <!-- aタグで書く場合 -->
+                        <!-- <a href="{{route('contacts.create')}}">新規登録</a> -->
+                        <!-- formタグで書く場合 -->
+                        <form action="{{route('contacts.create')}}">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">
+                                新規登録
+                            </button>
+                        </form>
+                        <form method="get" action="{{route('contacts.index')}}" class="form-inline my-2 my-lg-0">
+                            @csrf
+                            <input class="form-control mr-sm-2" type="search" placeholder="検索" name="search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索する</button>
+                        </form>
+                  </div>
                 @foreach($contact_forms as $contact_form)
                     <div class="card">
 
@@ -16,6 +32,7 @@
                                 </div>
                             @endif
                         </div>
+
                         氏名: {{$contact_form->your_name}}<br>
                         件名: {{$contact_form->title}}<br>
                         メールアドレス: {{$contact_form->email}}<br>
@@ -40,26 +57,17 @@
                             @elseif($contact_form->age === 6)
                                  60～歳
                             @endif<br>
-                        お問い合わせ内容: {{$contact_form->contact}}<br><br><br>
+                            <!-- お問い合わせ内容:-- {{--$contact_form->contact--}}--<br><br><br> -->
                         <a href="{{route('contacts.show', ['id' => $contact_form->id])}}">詳細をみる</a>
                 </div>
                 <br>
                 @endforeach
+                {{$contact_forms->links()}}
             </div>
         </div>
     </div>
 </div>
-<div class="register">
-        <!-- aタグで書く場合 -->
-        <!-- <a href="{{route('contacts.create')}}">新規登録</a> -->
-        <!-- formタグで書く場合 -->
-        <form action="{{route('contacts.create')}}">
-            @csrf
-            <button type="submit" class="btn btn-primary">
-                新規登録
-            </button>
-        </form>
-</div>
+
 
         </div>
     </div>

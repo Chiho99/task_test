@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactFormController;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(ContactFormSeeder::class);
+        $this->call(AreaSeeder::class);
+        $this->call(ShopSeeder::class);
+        $this->call(RouteSeeder::class);
+        $this->call(RouteShopSeeder::class);
     }
 }

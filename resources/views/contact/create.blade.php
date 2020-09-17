@@ -12,7 +12,17 @@
                             </div>
                         @endif
 
-
+                        <!-- バリデーションのエラー文表示 -->
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                        
                         <form method="POST" action="{{route('contacts.store')}}">
                         @csrf
                             氏名<br>

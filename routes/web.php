@@ -34,15 +34,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //ｃontact/idnexにたどり着いたら、ログイン機能を動かす
 // Route::get('contact/index', 'ContactFormController@index');
+Route::get('shops/index', 'ShopController@index');
 
 Route::group(['prefix' =>'contacts', 'middleware'=>'auth'], function(){
+    Route::get('/contacts', 'ContactFormController@index')->name('contacts.index');
+    Route::get('contacts/create', 'ContactFormController@create')->name('contacts.create');
+    Route::post('/contacts', 'ContactFormController@store')->name('contacts.store');
+    Route::get('contacts/{id}', 'ContactFormController@show')->name('contacts.show');
+    Route::get('/contacts/{id}/edit', 'ContactFormController@edit')->name('contacts.edit');
+    Route::post('/contacts/{id}', 'ContactFormController@update')->name('contacts.update');
+    Route::post('/contacts/{id}', 'ContactFormController@destroy')->name('contacts.destroy');
 });
 // Route::resource('contacts', 'ContactFormController');
 
-Route::get('/contacts', 'ContactFormController@index')->name('contacts.index');
-Route::get('contacts/create', 'ContactFormController@create')->name('contacts.create');
-Route::post('/contacts', 'ContactFormController@store')->name('contacts.store');
-Route::get('contacts/{id}', 'ContactFormController@show')->name('contacts.show');
-Route::get('/contacts/{id}/edit', 'ContactFormController@edit')->name('contacts.edit');
-Route::post('/contacts/{id}', 'ContactFormController@update')->name('contacts.update');
-Route::post('/contacts/{id}', 'ContactFormController@destroy')->name('contacts.destroy');
